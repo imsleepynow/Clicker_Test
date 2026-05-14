@@ -17,6 +17,8 @@ public class GameSystem : MonoBehaviour
     float timePointBonus = 1.0f; // 時間経過で増えるポイントの数が増える倍率
     float timeBonus = 1.0f; // 時間経過でポイントが増える時間の間隔短縮倍率
 
+    [SerializeField] PointRender renderer;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -29,6 +31,7 @@ public class GameSystem : MonoBehaviour
         fullGameTime += Time.deltaTime;
 
         PointCheck();
+        Render();
     }
 
     void PointCheck()
@@ -66,5 +69,10 @@ public class GameSystem : MonoBehaviour
     {
         nowPoint += plus;
         fullPoint += plus;
+    }
+
+    void Render()
+    {
+        renderer.RenderNowPoint(nowPoint);
     }
 }
